@@ -9,5 +9,6 @@
     </head>
 <body>
     <h2><%=teste%></h2>
+    <a href="form.jsp">Novo Produto</a>
 </body>
 </html>
