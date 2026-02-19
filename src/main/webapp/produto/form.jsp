@@ -9,7 +9,7 @@
 
     <h2>Cadastro de Produto</h2>
 
-    <form action="produtos" method="post">
+    <form action="${pageContext.request.contextPath}/produtos" method="post">
 
         <div>
             <label>Descrição:</label><br>
@@ -44,7 +44,7 @@
     </form>
 
     <br>
-    <a href="index.jsp">Voltar</a>
+    <a href="${pageContext.request.contextPath}/produtos">Voltar</a>
 
 </body>
 </html>
