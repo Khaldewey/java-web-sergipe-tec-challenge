@@ -23,7 +23,7 @@ public class ProdutoServlet extends HttpServlet {
 
         try {
             request.setAttribute("mensagem", "Teste de Comunicação");                       
-            request.getRequestDispatcher("index.jsp")
+            request.getRequestDispatcher("/produto/index.jsp")
                    .forward(request, response);
 
         } catch (Exception e) {
@@ -43,7 +43,7 @@ public class ProdutoServlet extends HttpServlet {
         try {
             Produto produto = new Produto(descricao, valor, Integer.valueOf(quantidadeEmEstoque), Date.valueOf(dataDeCadastro));
             dao.salvar(produto);
-            response.sendRedirect("produtos");
+            response.sendRedirect(request.getContextPath() + "/produtos");
         } catch (Exception e) {
             e.printStackTrace();
         }
