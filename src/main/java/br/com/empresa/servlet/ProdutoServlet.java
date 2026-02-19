@@ -3,6 +3,8 @@ package br.com.empresa.servlet;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.empresa.dao.ProdutoDAO;
 import br.com.empresa.models.Produto;
@@ -22,7 +24,23 @@ public class ProdutoServlet extends HttpServlet {
                          throws ServletException, IOException {
 
         try {
-            request.setAttribute("mensagem", "Teste de Comunicação");                       
+
+            String descricao = request.getParameter("descricao");
+            String id = request.getParameter("id");
+
+            List<Produto> lista;
+
+            if (descricao != null && !descricao.isEmpty()) {
+                lista = dao.buscarPorDescricao(descricao);
+            } else if (id != null && !id.isEmpty()) {
+                Produto p = dao.buscarPorId(Long.valueOf(id));
+                lista = new ArrayList<>();
+                if (p != null) lista.add(p);
+            } else {
+                lista = dao.listar();
+            }
+
+            request.setAttribute("produtos", lista);                      
             request.getRequestDispatcher("/produto/index.jsp")
                    .forward(request, response);
 

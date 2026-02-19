@@ -5,11 +5,15 @@ import java.sql.Date;
 
 
 public class Produto {
+    private Long id;
     String descricao = "";
     BigDecimal valor = null;
     Integer quantidadeEmEstoque = null;
     Date dataDeCadastro = null;
-    
+     
+    public Produto() {
+    }
+
     public Produto(String descricao, BigDecimal valor, Integer quantidadeEmEstoque, Date dataDeCadastro) {
         this.descricao = descricao;
         this.valor = valor;
@@ -48,8 +52,15 @@ public class Produto {
 
     public void setDataDeCadastro(Date dataDeCadastro) {
         this.dataDeCadastro = dataDeCadastro;
+    }  
+
+    public Long getId() {
+        return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
      @Override
     public String toString() {
@@ -100,6 +111,7 @@ public class Produto {
             return false;
         return true;
     }
+
 
 
 }
