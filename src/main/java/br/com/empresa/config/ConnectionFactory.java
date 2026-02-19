@@ -1,4 +1,4 @@
-package br.com.produtos.config;
+package br.com.empresa.config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,10 +1,10 @@
-package br.com.produtos.dao;
+package br.com.empresa.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-import br.com.produtos.config.ConnectionFactory;
-import br.com.produtos.models.Produto;
+import br.com.empresa.config.ConnectionFactory;
+import br.com.empresa.models.Produto;
 
 public class ProdutoDAO {
     

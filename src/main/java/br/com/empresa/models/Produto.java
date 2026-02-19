@@ -1,4 +1,4 @@
-package br.com.produtos.models;
+package br.com.empresa.models;
 
 import java.math.BigDecimal;
 import java.sql.Date;

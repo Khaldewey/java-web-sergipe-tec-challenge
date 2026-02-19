@@ -1,11 +1,11 @@
-package br.com.produtos.servlet;
+package br.com.empresa.servlet;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Date;
 
-import br.com.produtos.dao.ProdutoDAO;
-import br.com.produtos.models.Produto;
+import br.com.empresa.dao.ProdutoDAO;
+import br.com.empresa.models.Produto;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
