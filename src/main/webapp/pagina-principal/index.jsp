@@ -6,5 +6,6 @@
     </head>
 <body>
   <a href="${pageContext.request.contextPath}/produtos">Produtos</a>
+  <a href="${pageContext.request.contextPath}/clientes">Clientes</a>
 </body>
 </html>
