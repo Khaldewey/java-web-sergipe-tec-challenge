@@ -12,7 +12,7 @@ import br.com.empresa.models.Produto;
 public class ProdutoDAO {
     
     public void salvar(Produto produto) throws Exception {
-        String sql = "INSERT INTO produtos (descricao, valor, estoque, datacadastro) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO produtos (descricao, valor, estoque, data_cadastro) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -28,7 +28,7 @@ public class ProdutoDAO {
     public List<Produto> listar() throws Exception {
         List<Produto> lista = new ArrayList<>();
 
-        String sql = "SELECT id, descricao, valor, estoque, datacadastro FROM produtos";
+        String sql = "SELECT id, descricao, valor, estoque, data_cadastro FROM produtos";
 
         try (Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -39,7 +39,7 @@ public class ProdutoDAO {
                     rs.getString("descricao"),
                     rs.getBigDecimal("valor"),
                     rs.getInt("estoque"),
-                    rs.getDate("datacadastro")
+                    rs.getDate("data_cadastro")
                 );
                 p.setId(rs.getLong("id"));
                 lista.add(p);
@@ -66,7 +66,7 @@ public class ProdutoDAO {
                     rs.getString("descricao"),
                     rs.getBigDecimal("valor"),
                     rs.getInt("estoque"),
-                    rs.getDate("datacadastro")
+                    rs.getDate("data_cadastro")
                 );
                 p.setId(rs.getLong("id"));
                 lista.add(p);
@@ -91,7 +91,7 @@ public class ProdutoDAO {
                     rs.getString("descricao"),
                     rs.getBigDecimal("valor"),
                     rs.getInt("estoque"),
-                    rs.getDate("datacadastro")
+                    rs.getDate("data_cadastro")
                 );
                 p.setId(rs.getLong("id"));
                 return p;

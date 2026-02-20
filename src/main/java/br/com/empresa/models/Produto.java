@@ -21,6 +21,14 @@ public class Produto {
         this.dataDeCadastro = dataDeCadastro;
     }
 
+    public Produto(Long id, String descricao, BigDecimal valor, Integer quantidadeEmEstoque, Date dataDeCadastro) {
+        this.id = id;
+        this.descricao = descricao;
+        this.valor = valor;
+        this.quantidadeEmEstoque = quantidadeEmEstoque;
+        this.dataDeCadastro = dataDeCadastro;
+    }
+
    
     public String getDescricao() {
         return descricao;
