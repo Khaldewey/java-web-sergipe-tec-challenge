@@ -39,5 +39,6 @@
   </table>
 
   <a href="${pageContext.request.contextPath}/produto/form.jsp">Novo Produto</a>
+  <a href="${pageContext.request.contextPath}/pagina-principal">Voltar</a>
 </body>
 </html>
