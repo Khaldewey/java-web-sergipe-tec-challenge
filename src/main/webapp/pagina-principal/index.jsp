@@ -7,5 +7,6 @@
 <body>
   <a href="${pageContext.request.contextPath}/produtos">Produtos</a>
   <a href="${pageContext.request.contextPath}/clientes">Clientes</a>
+  <a href="${pageContext.request.contextPath}/pedidos">Pedidos</a>
 </body>
 </html>
