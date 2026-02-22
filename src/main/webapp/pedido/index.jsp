@@ -32,6 +32,8 @@
             </option>
         </c:forEach>
     </select>
+    <br>
+    <br>
     <button type="submit">Buscar</button>
 </form>
 
