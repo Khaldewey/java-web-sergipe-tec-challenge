@@ -347,6 +347,22 @@ public class PedidoDAO {
         return lista;
     }
 
+    public Long contar() throws Exception {
+
+        String sql = "SELECT COUNT(*) AS total FROM " + Pedido.NM_TABELA;
+
+        try (Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery()) {
+
+            if (rs.next()) {
+                return rs.getLong("total");
+            }
+        }
+
+        return 0L;
+    }
+
     private void validarEstoque(Connection conn,
                             Long produtoId,
                             Integer quantidade) throws Exception {
