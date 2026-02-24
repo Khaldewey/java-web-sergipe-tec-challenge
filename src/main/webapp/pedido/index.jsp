@@ -62,6 +62,7 @@
                         <th>Produto</th>
                         <th>Qtd</th>
                         <th>Valor</th>
+                        <th>Desconto</th>
                     </tr>
 
                     <c:forEach var="i" items="${p.itens}">
@@ -69,6 +70,7 @@
                             <td>${i.produtoNome}</td>
                             <td>${i.quantidade}</td>
                             <td>${i.valorUnitarioProduto}</td>
+                            <td>${i.desconto}</td>
                         </tr>
                     </c:forEach>
 

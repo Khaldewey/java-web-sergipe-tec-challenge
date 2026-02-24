@@ -20,6 +20,15 @@ import jakarta.servlet.http.*;
 @WebServlet("/pedidos")
 public class PedidoServlet extends HttpServlet {
 
+    public static String parametroId = "id";
+    public static String parametroDataInicio = "inicio";
+    public static String parametroDataFim = "fim";
+    public static String parametroProdutoId = "produtoId";
+    public static String parametroClienteId = "clienteId";
+    public static String parametroQuantidade = "quantidade";
+    public static String parametroDesconto = "desconto";
+    public static String parametroDataPedido = "dataPedido";
+
     PedidoDAO dao = new PedidoDAO();
     
     ClienteDAO clienteDAO = new ClienteDAO();
@@ -44,37 +53,23 @@ public class PedidoServlet extends HttpServlet {
                 return;
             }
 
-            String id = request.getParameter("id");
-            String inicio = request.getParameter("inicio");
-            String fim = request.getParameter("fim");
-            String clienteId = request.getParameter("clienteId");
-            String produtoId = request.getParameter("produtoId");
+            String id = request.getParameter(parametroId);
+            String inicio = request.getParameter(parametroDataInicio);
+            String fim = request.getParameter(parametroDataFim);
+            String clienteId = request.getParameter(parametroClienteId);
+            String produtoId = request.getParameter(parametroProdutoId);
 
-            List<Pedido> lista;
-            if (clienteId != null && !clienteId.isEmpty()) {
-                lista = dao.listarPorCliente(Long.valueOf(clienteId));
-            } else if (produtoId != null && !produtoId.isEmpty()) {
-                lista = dao.listarPorProduto(Long.valueOf(produtoId));
-            } else if (id != null && !id.isEmpty()) {
-                Pedido p = dao.buscarPorId(Long.valueOf(id));
-                lista = new ArrayList<>();
-                if (p != null) {
-                    lista.add(p);
-                }
-            } else if (inicio != null && fim != null
-                    && !inicio.isEmpty() && !fim.isEmpty()) {
-                lista = dao.buscarPorPeriodo(
-                        Date.valueOf(inicio),
-                        Date.valueOf(fim)
-                );
-
-            } else {
-                lista = dao.listarComCliente();
-            }
+            List<Pedido> lista = dao.buscarComFiltros(
+                    clienteId,
+                    produtoId,
+                    id,
+                    inicio,
+                    fim
+            );
 
             carregarItensECliente(lista);
             
-            if (clienteId != null && !clienteId.isEmpty()) {
+            if (clienteId != null && !clienteId.isEmpty() && !lista.isEmpty()) {
                 BigDecimal total = dao.calcularTotalPorCliente(Long.valueOf(clienteId));
                 request.setAttribute("totalCliente", total);
             }
@@ -101,11 +96,11 @@ public class PedidoServlet extends HttpServlet {
 
         try {
 
-            Long clienteId = Long.valueOf(request.getParameter("clienteId"));
-            Long produtoId = Long.valueOf(request.getParameter("produtoId"));
-            Integer quantidade = Integer.valueOf(request.getParameter("quantidade"));
-            BigDecimal desconto = new BigDecimal(request.getParameter("desconto"));
-            Date dataPedido = Date.valueOf(request.getParameter("dataPedido"));
+            Long clienteId = Long.valueOf(request.getParameter(parametroClienteId));
+            Long produtoId = Long.valueOf(request.getParameter(parametroProdutoId));
+            Integer quantidade = Integer.valueOf(request.getParameter(parametroQuantidade));
+            BigDecimal desconto = new BigDecimal(request.getParameter(parametroDesconto));
+            Date dataPedido = Date.valueOf(request.getParameter(parametroDataPedido));
 
             ProdutoDAO produtoDAO = new ProdutoDAO();
 

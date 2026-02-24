@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Pedido {
 
+    public static final String NM_TABELA = "pedidos";
+
     private Long id;
     private Long clienteId;
     private Date dataPedido;

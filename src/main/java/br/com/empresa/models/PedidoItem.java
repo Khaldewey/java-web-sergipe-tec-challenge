@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 
 public class PedidoItem {
 
+    public static final String NM_TABELA = "pedido_item";
+
     private Long id;
     private Long pedidoId;
     private Long produtoId;

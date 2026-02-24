@@ -5,70 +5,133 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.empresa.models.Cliente;
 import br.com.empresa.models.Pedido;
 import br.com.empresa.models.PedidoItem;
+import br.com.empresa.models.Produto;
+import br.com.empresa.models.metadados.ClienteColuna;
+import br.com.empresa.models.metadados.PedidoColuna;
+import br.com.empresa.models.metadados.PedidoItemColuna;
+import br.com.empresa.models.metadados.ProdutoColuna;
 import br.com.empresa.config.ConnectionFactory;
 
 public class PedidoDAO {
 
     public void salvar(Pedido pedido) throws Exception {
 
-        String sqlPedido = 
-            "INSERT INTO pedidos (cliente_id, data_pedido) VALUES (?, ?) RETURNING id";
+        String sqlPedido =
+            "INSERT INTO " + Pedido.NM_TABELA +
+            " (" + PedidoColuna.CLIENTE_ID + ", " +
+                PedidoColuna.DATA_PEDIDO + ") " +
+            "VALUES (?, ?) RETURNING " + PedidoColuna.ID;
 
         try (Connection conn = ConnectionFactory.getConnection()) {
 
             conn.setAutoCommit(false);
 
-            PreparedStatement stmtPedido =
-                conn.prepareStatement(sqlPedido);
+            try (
+                PreparedStatement stmtPedido =
+                    conn.prepareStatement(sqlPedido)
+            ) {
 
-            stmtPedido.setLong(1, pedido.getClienteId());
-            stmtPedido.setDate(2, pedido.getDataPedido());
+                stmtPedido.setLong(1, pedido.getClienteId());
+                stmtPedido.setDate(2, pedido.getDataPedido());
 
-            ResultSet rs = stmtPedido.executeQuery();
-            rs.next();
-            Long pedidoId = rs.getLong("id");
+                ResultSet rs = stmtPedido.executeQuery();
+                rs.next();
 
-            for (PedidoItem item : pedido.getItens()) {
+                Long pedidoId = rs.getLong(PedidoColuna.ID.getNome());
 
-                String sqlItem =
-                    "INSERT INTO pedido_item " +
-                    "(pedido_id, produto_id, valor_unitario_produto, quantidade, desconto) " +
-                    "VALUES (?, ?, ?, ?, ?)";
+                salvarItens(conn, pedidoId, pedido.getItens());
 
+                conn.commit();
+
+            } catch (Exception e) {
+                conn.rollback();
+                throw e;
+            }
+        }
+    }
+
+    private void salvarItens(Connection conn,
+                         Long pedidoId,
+                         List<PedidoItem> itens) throws Exception {
+
+        String sqlItem =
+            "INSERT INTO " + PedidoItem.NM_TABELA +
+            " (" + PedidoItemColuna.PEDIDO_ID + ", " +
+                PedidoItemColuna.PRODUTO_ID + ", " +
+                PedidoItemColuna.VALOR_UNITARIO + ", " +
+                PedidoItemColuna.QUANTIDADE + ", " +
+                PedidoItemColuna.DESCONTO + ") " +
+            "VALUES (?, ?, ?, ?, ?)";
+
+        String sqlAtualizaEstoque =
+            "UPDATE " + Produto.NM_TABELA +
+            " SET " + ProdutoColuna.ESTOQUE + " = " +
+                    ProdutoColuna.ESTOQUE + " - ? " +
+            "WHERE " + ProdutoColuna.ID + " = ?";
+
+        for (PedidoItem item : itens) {
+
+            validarEstoque(conn, item.getProdutoId(), item.getQuantidade());
+
+            try (
                 PreparedStatement stmtItem =
                     conn.prepareStatement(sqlItem);
+
+                PreparedStatement stmtEstoque =
+                    conn.prepareStatement(sqlAtualizaEstoque)
+            ) {
 
                 stmtItem.setLong(1, pedidoId);
                 stmtItem.setLong(2, item.getProdutoId());
                 stmtItem.setBigDecimal(3, item.getValorUnitarioProduto());
                 stmtItem.setInt(4, item.getQuantidade());
                 stmtItem.setBigDecimal(5, item.getDesconto());
-
                 stmtItem.executeUpdate();
 
-                PreparedStatement stmtEstoque =
-                    conn.prepareStatement(
-                        "UPDATE produtos SET estoque = estoque - ? WHERE id = ?"
-                    );
-                
-                validarEstoque(conn, item.getProdutoId(), item.getQuantidade());
                 stmtEstoque.setInt(1, item.getQuantidade());
                 stmtEstoque.setLong(2, item.getProdutoId());
                 stmtEstoque.executeUpdate();
             }
-
-            conn.commit();
         }
+    }
+
+    public Pedido buscarPorId(Long id) throws Exception {
+
+        String sql = "SELECT " +
+                PedidoColuna.ID + ", " +
+                PedidoColuna.CLIENTE_ID + ", " +
+                PedidoColuna.DATA_PEDIDO +
+                " FROM " + Pedido.NM_TABELA +
+                " WHERE " + PedidoColuna.ID + " = ?";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setLong(1, id);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return mapearPedido(rs);
+                }
+            }
+        }
+
+        return null;
     }
 
     public List<Pedido> buscarPorPeriodo(Date inicio, Date fim) throws Exception {
 
         List<Pedido> lista = new ArrayList<>();
 
-        String sql =
-            "SELECT * FROM pedidos WHERE data_pedido BETWEEN ? AND ?";
+        String sql = "SELECT " +
+            PedidoColuna.ID + ", " +
+            PedidoColuna.CLIENTE_ID + ", " +
+            PedidoColuna.DATA_PEDIDO +
+            " FROM " + Pedido.NM_TABELA +
+            " WHERE " + PedidoColuna.DATA_PEDIDO + " BETWEEN ? AND ?";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -79,12 +142,7 @@ public class PedidoDAO {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Pedido p = new Pedido(
-                    rs.getLong("id"),
-                    rs.getLong("cliente_id"),
-                    rs.getDate("data_pedido")
-                );
-                lista.add(p);
+                lista.add(mapearPedido(rs));
             }
         }
 
@@ -95,21 +153,22 @@ public class PedidoDAO {
 
         List<Pedido> lista = new ArrayList<>();
 
-        String sql = "SELECT * FROM pedidos WHERE cliente_id = ?";
+        String sql = "SELECT " +
+                PedidoColuna.ID + ", " +
+                PedidoColuna.CLIENTE_ID + ", " +
+                PedidoColuna.DATA_PEDIDO +
+                " FROM " + Pedido.NM_TABELA +
+                " WHERE " + PedidoColuna.CLIENTE_ID + " = ?";
 
         try (Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setLong(1, clienteId);
-            ResultSet rs = stmt.executeQuery();
 
-            while (rs.next()) {
-                Pedido p = new Pedido(
-                    rs.getLong("id"),
-                    rs.getLong("cliente_id"),
-                    rs.getDate("data_pedido")
-                );
-                lista.add(p);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    lista.add(mapearPedido(rs));
+                }
             }
         }
 
@@ -121,23 +180,21 @@ public class PedidoDAO {
         List<Pedido> lista = new ArrayList<>();
 
         String sql =
-            "SELECT p.id, p.cliente_id, c.nome AS cliente_nome, p.data_pedido " +
-            "FROM pedidos p " +
-            "JOIN clientes c ON p.cliente_id = c.id";
+            "SELECT p." + PedidoColuna.ID + ", " +
+            "p." + PedidoColuna.CLIENTE_ID + ", " +
+            "p." + PedidoColuna.DATA_PEDIDO + ", " +
+            "c." + ClienteColuna.NOME + " AS cliente_nome " +
+            "FROM " + Pedido.NM_TABELA + " p " +
+            "JOIN " + Cliente.NM_TABELA + " c ON p." +
+            PedidoColuna.CLIENTE_ID + " = c." + ClienteColuna.ID;
 
         try (Connection conn = ConnectionFactory.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            ResultSet rs = stmt.executeQuery();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
 
-                Pedido p = new Pedido(
-                    rs.getLong("id"),
-                    rs.getLong("cliente_id"),
-                    rs.getDate("data_pedido")
-                );
-
+                Pedido p = mapearPedido(rs);
                 p.setClienteNome(rs.getString("cliente_nome"));
 
                 lista.add(p);
@@ -152,24 +209,23 @@ public class PedidoDAO {
         List<Pedido> lista = new ArrayList<>();
 
         String sql =
-            "SELECT DISTINCT p.* " +
-            "FROM pedidos p " +
-            "JOIN pedido_item pi ON p.id = pi.pedido_id " +
-            "WHERE pi.produto_id = ?";
+            "SELECT DISTINCT p." + PedidoColuna.ID + ", " +
+            "p." + PedidoColuna.CLIENTE_ID + ", " +
+            "p." + PedidoColuna.DATA_PEDIDO + " " +
+            "FROM " + Pedido.NM_TABELA + " p " +
+            "JOIN " + PedidoItem.NM_TABELA + " pi ON p." +
+            PedidoColuna.ID + " = pi." + PedidoItemColuna.PEDIDO_ID + " " +
+            "WHERE pi." + PedidoItemColuna.PRODUTO_ID + " = ?";
 
         try (Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setLong(1, produtoId);
-            ResultSet rs = stmt.executeQuery();
 
-            while (rs.next()) {
-                Pedido p = new Pedido(
-                    rs.getLong("id"),
-                    rs.getLong("cliente_id"),
-                    rs.getDate("data_pedido")
-                );
-                lista.add(p);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    lista.add(mapearPedido(rs));
+                }
             }
         }
 
@@ -181,88 +237,123 @@ public class PedidoDAO {
         List<PedidoItem> itens = new ArrayList<>();
 
         String sql =
-            "SELECT pi.*, pr.descricao " +
-            "FROM pedido_item pi " +
-            "JOIN produtos pr ON pi.produto_id = pr.id " +
-            "WHERE pi.pedido_id = ?";
+            "SELECT pi." + PedidoItemColuna.PRODUTO_ID + ", " +
+            "pi." + PedidoItemColuna.VALOR_UNITARIO + ", " +
+            "pi." + PedidoItemColuna.QUANTIDADE + ", " +
+            "pi." + PedidoItemColuna.DESCONTO + ", " +
+            "pr." + ProdutoColuna.DESCRICAO + " " +
+            "FROM " + PedidoItem.NM_TABELA + " pi " +
+            "JOIN " + Produto.NM_TABELA + " pr ON pi." +
+            PedidoItemColuna.PRODUTO_ID + " = pr." + ProdutoColuna.ID + " " +
+            "WHERE pi." + PedidoItemColuna.PEDIDO_ID + " = ?";
 
         try (Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setLong(1, pedidoId);
-            ResultSet rs = stmt.executeQuery();
 
-            while (rs.next()) {
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
 
-                PedidoItem item = new PedidoItem(
-                    rs.getLong("produto_id"),
-                    rs.getBigDecimal("valor_unitario_produto"),
-                    rs.getInt("quantidade"),
-                    rs.getBigDecimal("desconto")
-                );
+                    PedidoItem item = mapearPedidoItem(rs);
+                    item.setProdutoNome(
+                        rs.getString(ProdutoColuna.DESCRICAO.getNome())
+                    );
 
-                item.setProdutoNome(rs.getString("descricao"));
-
-                itens.add(item);
+                    itens.add(item);
+                }
             }
         }
 
         return itens;
     }
 
+    public List<Pedido> buscarComFiltros(
+        String clienteId,
+        String produtoId,
+        String id,
+        String inicio,
+        String fim) throws Exception {
 
-    public BigDecimal calcularTotalPorCliente(Long clienteId) throws Exception {
+        List<Pedido> lista = new ArrayList<>();
+        List<Object> parametros = new ArrayList<>();
 
-        String sql =
-            "SELECT SUM((pi.valor_unitario_produto * pi.quantidade) - pi.desconto) AS total " +
-            "FROM pedidos p " +
-            "JOIN pedido_item pi ON p.id = pi.pedido_id " +
-            "WHERE p.cliente_id = ?";
+        StringBuilder sql = new StringBuilder();
+
+        sql.append("SELECT DISTINCT p.")
+        .append(PedidoColuna.ID).append(", p.")
+        .append(PedidoColuna.CLIENTE_ID).append(", p.")
+        .append(PedidoColuna.DATA_PEDIDO)
+        .append(" FROM ").append(Pedido.NM_TABELA).append(" p ");
+
+        if (produtoId != null && !produtoId.isEmpty()) {
+            sql.append(" JOIN ")
+            .append(PedidoItem.NM_TABELA)
+            .append(" pi ON p.")
+            .append(PedidoColuna.ID)
+            .append(" = pi.")
+            .append(PedidoItemColuna.PEDIDO_ID);
+        }
+
+        sql.append(" WHERE 1=1 ");
+
+        if (clienteId != null && !clienteId.isEmpty()) {
+            sql.append(" AND p.")
+            .append(PedidoColuna.CLIENTE_ID)
+            .append(" = ?");
+            parametros.add(Long.valueOf(clienteId));
+        }
+
+        if (id != null && !id.isEmpty()) {
+            sql.append(" AND p.")
+            .append(PedidoColuna.ID)
+            .append(" = ?");
+            parametros.add(Long.valueOf(id));
+        }
+
+        if (produtoId != null && !produtoId.isEmpty()) {
+            sql.append(" AND pi.")
+            .append(PedidoItemColuna.PRODUTO_ID)
+            .append(" = ?");
+            parametros.add(Long.valueOf(produtoId));
+        }
+
+        if (inicio != null && !inicio.isEmpty()
+            && fim != null && !fim.isEmpty()) {
+
+            sql.append(" AND p.")
+            .append(PedidoColuna.DATA_PEDIDO)
+            .append(" BETWEEN ? AND ?");
+
+            parametros.add(Date.valueOf(inicio));
+            parametros.add(Date.valueOf(fim));
+        }
 
         try (Connection conn = ConnectionFactory.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            PreparedStatement stmt =
+                conn.prepareStatement(sql.toString())) {
 
-            stmt.setLong(1, clienteId);
+            for (int i = 0; i < parametros.size(); i++) {
+                stmt.setObject(i + 1, parametros.get(i));
+            }
 
             ResultSet rs = stmt.executeQuery();
 
-            if (rs.next()) {
-                BigDecimal total = rs.getBigDecimal("total");
-                return total != null ? total : BigDecimal.ZERO;
+            while (rs.next()) {
+                lista.add(mapearPedido(rs));
             }
         }
 
-        return BigDecimal.ZERO;
-    }
-
-    public Pedido buscarPorId(Long id) throws Exception {
-
-        String sql = "SELECT * FROM pedidos WHERE id = ?";
-
-        try (Connection conn = ConnectionFactory.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setLong(1, id);
-
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                return new Pedido(
-                    rs.getLong("id"),
-                    rs.getLong("cliente_id"),
-                    rs.getDate("data_pedido")
-                );
-            }
-        }
-
-        return null;
+        return lista;
     }
 
     private void validarEstoque(Connection conn,
                             Long produtoId,
                             Integer quantidade) throws Exception {
 
-        String sql = "SELECT estoque FROM produtos WHERE id = ?";
+        String sql = "SELECT " + ProdutoColuna.ESTOQUE +
+             " FROM " + Produto.NM_TABELA +
+             " WHERE " + ProdutoColuna.ID + " = ?";
 
         PreparedStatement stmt = conn.prepareStatement(sql);
         stmt.setLong(1, produtoId);
@@ -271,7 +362,7 @@ public class PedidoDAO {
 
         if (rs.next()) {
 
-            int estoqueAtual = rs.getInt("estoque");
+            int estoqueAtual = rs.getInt(ProdutoColuna.ESTOQUE.getNome());
 
             if (quantidade > estoqueAtual) {
                 throw new RuntimeException(
@@ -282,5 +373,54 @@ public class PedidoDAO {
         } else {
             throw new RuntimeException("Produto não encontrado");
         }
+    }
+
+    public BigDecimal calcularTotalPorCliente(Long clienteId) throws Exception {
+
+        String sql =
+            "SELECT SUM(" +
+            "(pi." + PedidoItemColuna.VALOR_UNITARIO + " * " +
+            "pi." + PedidoItemColuna.QUANTIDADE + ") - " +
+            "pi." + PedidoItemColuna.DESCONTO +
+            ") AS total " +
+            "FROM " + Pedido.NM_TABELA + " p " +
+            "JOIN " + PedidoItem.NM_TABELA + " pi ON p." +
+            PedidoColuna.ID + " = pi." + PedidoItemColuna.PEDIDO_ID + " " +
+            "WHERE p." + PedidoColuna.CLIENTE_ID + " = ?";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setLong(1, clienteId);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    BigDecimal total = rs.getBigDecimal("total");
+                    return total != null ? total : BigDecimal.ZERO;
+                }
+            }
+        }
+
+        return BigDecimal.ZERO;
+    }
+
+    private Pedido mapearPedido(ResultSet rs) throws Exception {
+        return new Pedido(
+            rs.getLong(PedidoColuna.ID.getNome()),
+            rs.getLong(PedidoColuna.CLIENTE_ID.getNome()),
+            rs.getDate(PedidoColuna.DATA_PEDIDO.getNome())
+        );
+    }
+
+    private PedidoItem mapearPedidoItem(ResultSet rs) throws Exception {
+
+        PedidoItem item = new PedidoItem(
+            rs.getLong(PedidoItemColuna.PRODUTO_ID.getNome()),
+            rs.getBigDecimal(PedidoItemColuna.VALOR_UNITARIO.getNome()),
+            rs.getInt(PedidoItemColuna.QUANTIDADE.getNome()),
+            rs.getBigDecimal(PedidoItemColuna.DESCONTO.getNome())
+        );
+
+        return item;
     }
 }
