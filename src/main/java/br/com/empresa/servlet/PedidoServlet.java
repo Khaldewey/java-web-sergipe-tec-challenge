@@ -85,7 +85,9 @@ public class PedidoServlet extends HttpServlet {
                    .forward(request, response);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            request.setAttribute("exception", e);
+            request.getRequestDispatcher("/exception.jsp")
+           .forward(request, response);
         }
     }
 
@@ -131,7 +133,9 @@ public class PedidoServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/pedidos");
 
         } catch (Exception e) {
-            e.printStackTrace();
+            request.setAttribute("exception", e);
+            request.getRequestDispatcher("/exception.jsp")
+           .forward(request, response);
         }
     }
 

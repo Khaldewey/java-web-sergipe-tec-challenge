@@ -57,7 +57,9 @@ public class ClienteServlet extends HttpServlet {
                    .forward(request, response);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            request.setAttribute("exception", e);
+            request.getRequestDispatcher("/exception.jsp")
+           .forward(request, response);
         }
     }
 
@@ -74,7 +76,9 @@ public class ClienteServlet extends HttpServlet {
             dao.salvar(cliente);
             response.sendRedirect(request.getContextPath() + "/clientes");
         } catch (Exception e) {
-            e.printStackTrace();
+            request.setAttribute("exception", e);
+            request.getRequestDispatcher("/exception.jsp")
+           .forward(request, response);
         }
     }
 }

@@ -51,7 +51,9 @@ public class ProdutoServlet extends HttpServlet {
                    .forward(request, response);
 
         } catch (Exception e) {
-            e.printStackTrace();
+           request.setAttribute("exception", e);
+            request.getRequestDispatcher("/exception.jsp")
+           .forward(request, response);
         }
     }
 
@@ -69,7 +71,9 @@ public class ProdutoServlet extends HttpServlet {
             dao.salvar(produto);
             response.sendRedirect(request.getContextPath() + "/produtos");
         } catch (Exception e) {
-            e.printStackTrace();
+            request.setAttribute("exception", e);
+            request.getRequestDispatcher("/exception.jsp")
+           .forward(request, response);
         }
     }
 }
