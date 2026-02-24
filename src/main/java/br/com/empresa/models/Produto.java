@@ -5,6 +5,9 @@ import java.sql.Date;
 
 
 public class Produto {
+
+    public static final String NM_TABELA = "produtos";
+    
     private Long id;
     String descricao = "";
     BigDecimal valor = null;

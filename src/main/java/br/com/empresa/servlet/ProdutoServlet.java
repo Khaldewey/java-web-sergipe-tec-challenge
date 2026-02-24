@@ -17,6 +17,12 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet("/produtos")
 public class ProdutoServlet extends HttpServlet {
 
+    public static String parametroId = "id";
+    public static String parametroDescricao = "descricao";
+    public static String parametroValor = "valor";
+    public static String parametroQuantidade = "qtd";
+    public static String parametroDataCadastro = "dataCadastro";
+
     ProdutoDAO dao = new ProdutoDAO();
 
     protected void doGet(HttpServletRequest request,
@@ -25,8 +31,8 @@ public class ProdutoServlet extends HttpServlet {
 
         try {
 
-            String descricao = request.getParameter("descricao");
-            String id = request.getParameter("id");
+            String descricao = request.getParameter(parametroDescricao);
+            String id = request.getParameter(parametroId);
 
             List<Produto> lista;
 
@@ -53,10 +59,10 @@ public class ProdutoServlet extends HttpServlet {
                           HttpServletResponse response)
                           throws ServletException, IOException {
 
-        String descricao = request.getParameter("descricao");
-        BigDecimal valor = new BigDecimal(request.getParameter("valor"));
-        String quantidadeEmEstoque = request.getParameter("qtd");
-        String dataDeCadastro = request.getParameter("dataCadastro");
+        String descricao = request.getParameter(parametroDescricao);
+        BigDecimal valor = new BigDecimal(request.getParameter(parametroValor));
+        String quantidadeEmEstoque = request.getParameter(parametroQuantidade);
+        String dataDeCadastro = request.getParameter(parametroDataCadastro);
 
         try {
             Produto produto = new Produto(descricao, valor, Integer.valueOf(quantidadeEmEstoque), Date.valueOf(dataDeCadastro));
