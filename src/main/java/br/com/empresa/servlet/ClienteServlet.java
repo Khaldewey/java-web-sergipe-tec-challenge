@@ -17,6 +17,11 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet("/clientes")
 public class ClienteServlet extends HttpServlet {
 
+    public static String parametroId = "id";
+    public static String parametroNome = "nome";
+    public static String parametroEmail = "email";
+    public static String parametroDataCadastro = "dataCadastro";
+
     ClienteDAO dao = new ClienteDAO();
 
     protected void doGet(HttpServletRequest request,
@@ -25,8 +30,8 @@ public class ClienteServlet extends HttpServlet {
 
         try {
 
-            String nome = request.getParameter("nome");
-            String id = request.getParameter("id");
+            String nome = request.getParameter(parametroNome);
+            String id = request.getParameter(parametroId);
 
             List<Cliente> lista;
 
@@ -60,9 +65,9 @@ public class ClienteServlet extends HttpServlet {
                           HttpServletResponse response)
                           throws ServletException, IOException {
 
-        String nome = request.getParameter("nome");
-        String email = request.getParameter("email");
-        String dataCadastro = request.getParameter("dataCadastro");
+        String nome = request.getParameter(parametroNome);
+        String email = request.getParameter(parametroEmail);
+        String dataCadastro = request.getParameter(parametroDataCadastro);
 
         try {
             Cliente cliente = new Cliente( nome, email, Date.valueOf(dataCadastro));

@@ -8,12 +8,17 @@ import java.util.List;
 
 import br.com.empresa.config.ConnectionFactory;
 import br.com.empresa.models.Cliente;
+import br.com.empresa.models.metadados.ClienteColuna;
 
 public class ClienteDAO {
 
     public void salvar(Cliente cliente) throws Exception {
 
-        String sql = "INSERT INTO clientes (nome, email, data_cadastro) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO " + Cliente.NM_TABELA +
+        " (" + ClienteColuna.NOME + ", " +
+               ClienteColuna.EMAIL + ", " +
+               ClienteColuna.DATA_CADASTRO + ") " +
+        "VALUES (?, ?, ?)";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -30,22 +35,19 @@ public class ClienteDAO {
 
         List<Cliente> lista = new ArrayList<>();
 
-        String sql = "SELECT id, nome, email, data_cadastro FROM clientes";
+        String sql = "SELECT " +
+        ClienteColuna.ID + ", " +
+        ClienteColuna.NOME + ", " +
+        ClienteColuna.EMAIL + ", " +
+        ClienteColuna.DATA_CADASTRO +
+        " FROM " + Cliente.NM_TABELA;
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-
-                Cliente c = new Cliente(
-                        rs.getString("nome"),
-                        rs.getString("email"),
-                        rs.getDate("data_cadastro")
-                );
-
-                c.setId(rs.getLong("id"));
-                lista.add(c);
+                lista.add(mapear(rs));
             }
         }
 
@@ -56,25 +58,24 @@ public class ClienteDAO {
 
         List<Cliente> lista = new ArrayList<>();
 
-        String sql = "SELECT * FROM clientes WHERE LOWER(nome) LIKE LOWER(?)";
+        String sql = "SELECT " +
+                ClienteColuna.ID + ", " +
+                ClienteColuna.NOME + ", " +
+                ClienteColuna.EMAIL + ", " +
+                ClienteColuna.DATA_CADASTRO +
+                " FROM " + Cliente.NM_TABELA +
+                " WHERE LOWER(" + ClienteColuna.NOME + ") LIKE LOWER(?)";
 
         try (Connection conn = ConnectionFactory.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, "%" + nome + "%");
 
-            ResultSet rs = stmt.executeQuery();
+            try (ResultSet rs = stmt.executeQuery()) {
 
-            while (rs.next()) {
-
-                Cliente c = new Cliente(
-                        rs.getString("nome"),
-                        rs.getString("email"),
-                        rs.getDate("data_cadastro")
-                );
-
-                c.setId(rs.getLong("id"));
-                lista.add(c);
+                while (rs.next()) {
+                    lista.add(mapear(rs));
+                }
             }
         }
 
@@ -83,28 +84,38 @@ public class ClienteDAO {
 
     public Cliente buscarPorId(Long id) throws Exception {
 
-        String sql = "SELECT * FROM clientes WHERE id = ?";
+        String sql = "SELECT " +
+                ClienteColuna.ID + ", " +
+                ClienteColuna.NOME + ", " +
+                ClienteColuna.EMAIL + ", " +
+                ClienteColuna.DATA_CADASTRO +
+                " FROM " + Cliente.NM_TABELA +
+                " WHERE " + ClienteColuna.ID + " = ?";
 
         try (Connection conn = ConnectionFactory.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setLong(1, id);
 
-            ResultSet rs = stmt.executeQuery();
+            try (ResultSet rs = stmt.executeQuery()) {
 
-            if (rs.next()) {
-
-                Cliente c = new Cliente(
-                        rs.getString("nome"),
-                        rs.getString("email"),
-                        rs.getDate("data_cadastro")
-                );
-
-                c.setId(rs.getLong("id"));
-                return c;
+                if (rs.next()) {
+                    return mapear(rs); 
+                }
             }
         }
 
         return null;
+    }
+
+    private Cliente mapear(ResultSet rs) throws Exception {
+        Cliente c = new Cliente(
+                rs.getString(ClienteColuna.NOME.getNome()),
+                rs.getString(ClienteColuna.EMAIL.getNome()),
+                rs.getDate(ClienteColuna.DATA_CADASTRO.getNome())
+        );
+
+        c.setId(rs.getLong(ClienteColuna.ID.getNome()));
+        return c;
     }
 }

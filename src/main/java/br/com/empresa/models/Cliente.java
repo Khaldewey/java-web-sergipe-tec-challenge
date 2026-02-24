@@ -2,7 +2,9 @@ package br.com.empresa.models;
 import java.sql.Date;
 
 public class Cliente {
-
+    
+    public static final String NM_TABELA = "clientes";
+    
     private Long id;
     private String nome;
     private String email;
