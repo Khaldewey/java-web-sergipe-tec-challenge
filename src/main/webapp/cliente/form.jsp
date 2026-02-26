@@ -87,7 +87,11 @@
 <div class="container">
 
     <h2>Cadastro de Cliente</h2>
-
+    <c:if test="${not empty erro}">
+        <div style="color: red; font-weight: bold;">
+            ${erro}
+        </div>
+    </c:if>
     <form id="clienteForm"
           action="${pageContext.request.contextPath}/clientes"
           method="post">

@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.postgresql.util.PSQLException;
+
 import br.com.empresa.dao.ClienteDAO;
 import br.com.empresa.models.Cliente;
 
@@ -70,15 +72,31 @@ public class ClienteServlet extends HttpServlet {
         String nome = request.getParameter(parametroNome);
         String email = request.getParameter(parametroEmail);
         String dataCadastro = request.getParameter(parametroDataCadastro);
+        Cliente cliente = null;
 
         try {
-            Cliente cliente = new Cliente( nome, email, Date.valueOf(dataCadastro));
+            cliente = new Cliente( nome, email, Date.valueOf(dataCadastro));
             dao.salvar(cliente);
             response.sendRedirect(request.getContextPath() + "/clientes");
+        } catch (PSQLException e) {
+            if ("23505".equals(e.getSQLState())) {
+
+                request.setAttribute("erro",
+                    "Já existe e-mail cadastrado na base de dados.");
+
+                request.setAttribute("cliente", cliente);
+
+                request.getRequestDispatcher("/cliente/form.jsp")
+                    .forward(request, response);
+            } else {
+                throw new ServletException(e);
+            }
+
         } catch (Exception e) {
+
             request.setAttribute("exception", e);
             request.getRequestDispatcher("/exception.jsp")
-           .forward(request, response);
+                .forward(request, response);
         }
     }
 }
