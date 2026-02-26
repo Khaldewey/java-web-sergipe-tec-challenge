@@ -6,14 +6,23 @@ import java.sql.DriverManager;
 public class ConnectionFactory {
 
     private static final String URL =
-        "jdbc:postgresql://localhost:5432/empresa_db";
+    "jdbc:h2:file:./data/empresa_db;" +
+    "AUTO_SERVER=TRUE;" +
+    "INIT=RUNSCRIPT FROM 'classpath:schema.sql'";
 
-    private static final String USER = "postgres";
-    private static final String PASSWORD = "postgres";
+    private static final String USER = "sa";
+    private static final String PASSWORD = "";
+
+    static {
+        try {
+            Class.forName("org.h2.Driver");
+            System.out.println("H2 persistente carregado!");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static Connection getConnection() throws Exception {
-        Class.forName("org.postgresql.Driver");
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 }
-

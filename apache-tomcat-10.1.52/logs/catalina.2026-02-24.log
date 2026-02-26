@@ -1,0 +1,159 @@
+24-Feb-2026 16:30:32.541 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/10.1.52
+24-Feb-2026 16:30:32.560 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Jan 23 2026 19:29:07 UTC
+24-Feb-2026 16:30:32.560 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 10.1.52.0
+24-Feb-2026 16:30:32.560 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Windows 11
+24-Feb-2026 16:30:32.560 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            10.0
+24-Feb-2026 16:30:32.560 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+24-Feb-2026 16:30:32.562 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             C:\Program Files\Java\jdk-17
+24-Feb-2026 16:30:32.562 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           17.0.11+7-LTS-207
+24-Feb-2026 16:30:32.562 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+24-Feb-2026 16:30:32.562 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         C:\tomcat\apache-tomcat-10.1.52
+24-Feb-2026 16:30:32.562 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         C:\tomcat\apache-tomcat-10.1.52
+24-Feb-2026 16:30:32.582 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=C:\tomcat\apache-tomcat-10.1.52\conf\logging.properties
+24-Feb-2026 16:30:32.582 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+24-Feb-2026 16:30:32.582 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+24-Feb-2026 16:30:32.582 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+24-Feb-2026 16:30:32.582 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dsun.io.useCanonCaches=false
+24-Feb-2026 16:30:32.582 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+24-Feb-2026 16:30:32.582 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang.reflect=ALL-UNNAMED
+24-Feb-2026 16:30:32.582 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+24-Feb-2026 16:30:32.582 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util=ALL-UNNAMED
+24-Feb-2026 16:30:32.582 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+24-Feb-2026 16:30:32.582 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+24-Feb-2026 16:30:32.582 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=C:\tomcat\apache-tomcat-10.1.52
+24-Feb-2026 16:30:32.582 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=C:\tomcat\apache-tomcat-10.1.52
+24-Feb-2026 16:30:32.582 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=C:\tomcat\apache-tomcat-10.1.52\temp
+24-Feb-2026 16:30:32.597 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Loaded Apache Tomcat Native library [2.0.12] using APR version [1.7.6].
+24-Feb-2026 16:30:32.632 INFO [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL successfully initialized [OpenSSL 3.5.4 30 Sep 2025]
+24-Feb-2026 16:30:32.971 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+24-Feb-2026 16:30:33.019 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [876] milliseconds
+24-Feb-2026 16:30:33.147 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+24-Feb-2026 16:30:33.147 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/10.1.52]
+24-Feb-2026 16:30:33.202 INFO [main] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [C:\tomcat\apache-tomcat-10.1.52\webapps\empresa-web.war]
+24-Feb-2026 16:30:34.594 INFO [main] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+24-Feb-2026 16:30:34.807 INFO [main] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [C:\tomcat\apache-tomcat-10.1.52\webapps\empresa-web.war] has finished in [1.597] ms
+24-Feb-2026 16:30:34.807 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Diretório de instalação da aplicação web [C:\tomcat\apache-tomcat-10.1.52\webapps\docs]
+24-Feb-2026 16:30:34.868 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\tomcat\apache-tomcat-10.1.52\webapps\docs] has finished in [61] ms
+24-Feb-2026 16:30:34.868 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Diretório de instalação da aplicação web [C:\tomcat\apache-tomcat-10.1.52\webapps\examples]
+24-Feb-2026 16:30:35.489 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\tomcat\apache-tomcat-10.1.52\webapps\examples] has finished in [621] ms
+24-Feb-2026 16:30:35.496 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Diretório de instalação da aplicação web [C:\tomcat\apache-tomcat-10.1.52\webapps\host-manager]
+24-Feb-2026 16:30:35.562 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\tomcat\apache-tomcat-10.1.52\webapps\host-manager] has finished in [62] ms
+24-Feb-2026 16:30:35.562 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Diretório de instalação da aplicação web [C:\tomcat\apache-tomcat-10.1.52\webapps\manager]
+24-Feb-2026 16:30:35.616 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\tomcat\apache-tomcat-10.1.52\webapps\manager] has finished in [54] ms
+24-Feb-2026 16:30:35.616 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Diretório de instalação da aplicação web [C:\tomcat\apache-tomcat-10.1.52\webapps\ROOT]
+24-Feb-2026 16:30:35.640 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\tomcat\apache-tomcat-10.1.52\webapps\ROOT] has finished in [24] ms
+24-Feb-2026 16:30:35.665 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+24-Feb-2026 16:30:35.744 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [2713] milliseconds
+24-Feb-2026 16:35:36.872 INFO [Catalina-utility-1] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/empresa-web]
+24-Feb-2026 16:35:37.107 INFO [Catalina-utility-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [C:\tomcat\apache-tomcat-10.1.52\webapps\empresa-web.war]
+24-Feb-2026 16:35:40.785 INFO [Catalina-utility-1] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+24-Feb-2026 16:35:40.987 INFO [Catalina-utility-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [C:\tomcat\apache-tomcat-10.1.52\webapps\empresa-web.war] has finished in [3.880] ms
+24-Feb-2026 16:45:12.126 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/empresa-web]
+24-Feb-2026 16:45:12.135 WARNING [Catalina-utility-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc The web application [empresa-web] registered the JDBC driver [org.postgresql.Driver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+24-Feb-2026 16:45:12.235 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [C:\tomcat\apache-tomcat-10.1.52\webapps\empresa-web.war]
+24-Feb-2026 16:45:13.789 INFO [Catalina-utility-2] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+24-Feb-2026 16:45:13.865 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [C:\tomcat\apache-tomcat-10.1.52\webapps\empresa-web.war] has finished in [1.630] ms
+24-Feb-2026 16:57:25.288 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/empresa-web]
+24-Feb-2026 16:57:25.411 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [C:\tomcat\apache-tomcat-10.1.52\webapps\empresa-web.war]
+24-Feb-2026 16:57:26.877 INFO [Catalina-utility-2] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+24-Feb-2026 16:57:26.909 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [C:\tomcat\apache-tomcat-10.1.52\webapps\empresa-web.war] has finished in [1.493] ms
+24-Feb-2026 17:14:58.954 INFO [Catalina-utility-1] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/empresa-web]
+24-Feb-2026 17:14:58.963 WARNING [Catalina-utility-1] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc The web application [empresa-web] registered the JDBC driver [org.postgresql.Driver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+24-Feb-2026 17:14:59.083 INFO [Catalina-utility-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [C:\tomcat\apache-tomcat-10.1.52\webapps\empresa-web.war]
+24-Feb-2026 17:15:00.635 INFO [Catalina-utility-1] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+24-Feb-2026 17:15:00.673 INFO [Catalina-utility-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [C:\tomcat\apache-tomcat-10.1.52\webapps\empresa-web.war] has finished in [1.590] ms
+24-Feb-2026 17:17:51.028 INFO [Catalina-utility-1] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/empresa-web]
+24-Feb-2026 17:17:51.028 WARNING [Catalina-utility-1] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc The web application [empresa-web] registered the JDBC driver [org.postgresql.Driver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+24-Feb-2026 17:17:51.187 INFO [Catalina-utility-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [C:\tomcat\apache-tomcat-10.1.52\webapps\empresa-web.war]
+24-Feb-2026 17:17:52.727 INFO [Catalina-utility-1] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+24-Feb-2026 17:17:52.758 INFO [Catalina-utility-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [C:\tomcat\apache-tomcat-10.1.52\webapps\empresa-web.war] has finished in [1.571] ms
+24-Feb-2026 18:41:12.388 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/10.1.52
+24-Feb-2026 18:41:12.396 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Jan 23 2026 19:29:07 UTC
+24-Feb-2026 18:41:12.396 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 10.1.52.0
+24-Feb-2026 18:41:12.396 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Windows 11
+24-Feb-2026 18:41:12.396 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            10.0
+24-Feb-2026 18:41:12.396 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+24-Feb-2026 18:41:12.396 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             C:\Program Files\Java\jdk-17
+24-Feb-2026 18:41:12.396 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           17.0.11+7-LTS-207
+24-Feb-2026 18:41:12.396 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+24-Feb-2026 18:41:12.396 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         C:\tomcat\apache-tomcat-10.1.52
+24-Feb-2026 18:41:12.396 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         C:\tomcat\apache-tomcat-10.1.52
+24-Feb-2026 18:41:12.418 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=C:\tomcat\apache-tomcat-10.1.52\conf\logging.properties
+24-Feb-2026 18:41:12.418 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+24-Feb-2026 18:41:12.418 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+24-Feb-2026 18:41:12.418 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+24-Feb-2026 18:41:12.418 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dsun.io.useCanonCaches=false
+24-Feb-2026 18:41:12.418 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+24-Feb-2026 18:41:12.418 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang.reflect=ALL-UNNAMED
+24-Feb-2026 18:41:12.418 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+24-Feb-2026 18:41:12.418 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util=ALL-UNNAMED
+24-Feb-2026 18:41:12.418 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+24-Feb-2026 18:41:12.422 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+24-Feb-2026 18:41:12.422 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=C:\tomcat\apache-tomcat-10.1.52
+24-Feb-2026 18:41:12.422 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=C:\tomcat\apache-tomcat-10.1.52
+24-Feb-2026 18:41:12.422 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=C:\tomcat\apache-tomcat-10.1.52\temp
+24-Feb-2026 18:41:12.433 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Loaded Apache Tomcat Native library [2.0.12] using APR version [1.7.6].
+24-Feb-2026 18:41:12.463 INFO [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL successfully initialized [OpenSSL 3.5.4 30 Sep 2025]
+24-Feb-2026 18:41:12.749 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+24-Feb-2026 18:41:12.805 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [699] milliseconds
+24-Feb-2026 18:41:12.890 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+24-Feb-2026 18:41:12.890 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/10.1.52]
+24-Feb-2026 18:41:12.953 INFO [main] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [C:\tomcat\apache-tomcat-10.1.52\webapps\empresa-web.war]
+24-Feb-2026 18:41:14.412 INFO [main] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+24-Feb-2026 18:41:14.622 INFO [main] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [C:\tomcat\apache-tomcat-10.1.52\webapps\empresa-web.war] has finished in [1.660] ms
+24-Feb-2026 18:41:14.622 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Diretório de instalação da aplicação web [C:\tomcat\apache-tomcat-10.1.52\webapps\docs]
+24-Feb-2026 18:41:14.685 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\tomcat\apache-tomcat-10.1.52\webapps\docs] has finished in [63] ms
+24-Feb-2026 18:41:14.687 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Diretório de instalação da aplicação web [C:\tomcat\apache-tomcat-10.1.52\webapps\examples]
+24-Feb-2026 18:41:15.352 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\tomcat\apache-tomcat-10.1.52\webapps\examples] has finished in [663] ms
+24-Feb-2026 18:41:15.354 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Diretório de instalação da aplicação web [C:\tomcat\apache-tomcat-10.1.52\webapps\host-manager]
+24-Feb-2026 18:41:15.401 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\tomcat\apache-tomcat-10.1.52\webapps\host-manager] has finished in [47] ms
+24-Feb-2026 18:41:15.417 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Diretório de instalação da aplicação web [C:\tomcat\apache-tomcat-10.1.52\webapps\manager]
+24-Feb-2026 18:41:15.465 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\tomcat\apache-tomcat-10.1.52\webapps\manager] has finished in [48] ms
+24-Feb-2026 18:41:15.465 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Diretório de instalação da aplicação web [C:\tomcat\apache-tomcat-10.1.52\webapps\ROOT]
+24-Feb-2026 18:41:15.497 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\tomcat\apache-tomcat-10.1.52\webapps\ROOT] has finished in [32] ms
+24-Feb-2026 18:41:15.507 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+24-Feb-2026 18:41:15.586 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [2779] milliseconds
+24-Feb-2026 19:27:47.018 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/empresa-web]
+24-Feb-2026 19:27:47.034 WARNING [Catalina-utility-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc The web application [empresa-web] registered the JDBC driver [org.postgresql.Driver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+24-Feb-2026 19:27:47.337 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [C:\tomcat\apache-tomcat-10.1.52\webapps\empresa-web.war]
+24-Feb-2026 19:27:50.421 INFO [Catalina-utility-2] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+24-Feb-2026 19:27:50.631 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [C:\tomcat\apache-tomcat-10.1.52\webapps\empresa-web.war] has finished in [3.294] ms
+24-Feb-2026 19:41:23.673 INFO [Catalina-utility-1] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/empresa-web]
+24-Feb-2026 19:41:23.676 INFO [Catalina-utility-1] org.apache.catalina.core.StandardWrapper.unload Waiting for [1] instance(s) to be deallocated for Servlet [br.com.empresa.servlet.PaginaPrincipalServlet]
+24-Feb-2026 19:41:23.898 WARNING [Catalina-utility-1] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc The web application [empresa-web] registered the JDBC driver [org.postgresql.Driver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+24-Feb-2026 19:41:24.166 INFO [Catalina-utility-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [C:\tomcat\apache-tomcat-10.1.52\webapps\empresa-web.war]
+24-Feb-2026 19:41:27.431 INFO [Catalina-utility-1] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+24-Feb-2026 19:41:27.540 INFO [Catalina-utility-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [C:\tomcat\apache-tomcat-10.1.52\webapps\empresa-web.war] has finished in [3.374] ms
+24-Feb-2026 19:52:59.964 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/empresa-web]
+24-Feb-2026 19:52:59.973 WARNING [Catalina-utility-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc The web application [empresa-web] registered the JDBC driver [org.postgresql.Driver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+24-Feb-2026 19:53:00.227 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [C:\tomcat\apache-tomcat-10.1.52\webapps\empresa-web.war]
+24-Feb-2026 19:53:03.285 INFO [Catalina-utility-2] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+24-Feb-2026 19:53:03.456 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [C:\tomcat\apache-tomcat-10.1.52\webapps\empresa-web.war] has finished in [3.226] ms
+24-Feb-2026 19:56:34.179 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/empresa-web]
+24-Feb-2026 19:56:34.401 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [C:\tomcat\apache-tomcat-10.1.52\webapps\empresa-web.war]
+24-Feb-2026 19:56:37.388 INFO [Catalina-utility-2] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+24-Feb-2026 19:56:37.540 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [C:\tomcat\apache-tomcat-10.1.52\webapps\empresa-web.war] has finished in [3.139] ms
+24-Feb-2026 19:59:38.110 INFO [Catalina-utility-1] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/empresa-web]
+24-Feb-2026 19:59:38.392 INFO [Catalina-utility-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [C:\tomcat\apache-tomcat-10.1.52\webapps\empresa-web.war]
+24-Feb-2026 19:59:41.087 INFO [Catalina-utility-1] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+24-Feb-2026 19:59:41.199 INFO [Catalina-utility-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [C:\tomcat\apache-tomcat-10.1.52\webapps\empresa-web.war] has finished in [2.807] ms
+24-Feb-2026 20:04:12.598 INFO [Catalina-utility-1] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/empresa-web]
+24-Feb-2026 20:04:12.605 WARNING [Catalina-utility-1] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc The web application [empresa-web] registered the JDBC driver [org.postgresql.Driver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+24-Feb-2026 20:04:12.819 INFO [Catalina-utility-1] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [C:\tomcat\apache-tomcat-10.1.52\webapps\empresa-web.war]
+24-Feb-2026 20:04:15.615 INFO [Catalina-utility-1] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+24-Feb-2026 20:04:15.735 INFO [Catalina-utility-1] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [C:\tomcat\apache-tomcat-10.1.52\webapps\empresa-web.war] has finished in [2.916] ms
+24-Feb-2026 20:06:36.456 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/empresa-web]
+24-Feb-2026 20:06:36.456 WARNING [Catalina-utility-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc The web application [empresa-web] registered the JDBC driver [org.postgresql.Driver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+24-Feb-2026 20:06:36.795 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [C:\tomcat\apache-tomcat-10.1.52\webapps\empresa-web.war]
+24-Feb-2026 20:06:40.258 INFO [Catalina-utility-2] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+24-Feb-2026 20:06:40.393 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [C:\tomcat\apache-tomcat-10.1.52\webapps\empresa-web.war] has finished in [3.598] ms
+24-Feb-2026 20:09:11.069 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/empresa-web]
+24-Feb-2026 20:09:11.081 WARNING [Catalina-utility-2] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc The web application [empresa-web] registered the JDBC driver [org.postgresql.Driver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+24-Feb-2026 20:09:11.524 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [C:\tomcat\apache-tomcat-10.1.52\webapps\empresa-web.war]
+24-Feb-2026 20:09:14.785 INFO [Catalina-utility-2] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+24-Feb-2026 20:09:14.876 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [C:\tomcat\apache-tomcat-10.1.52\webapps\empresa-web.war] has finished in [3.352] ms
+24-Feb-2026 20:14:54.510 INFO [Thread-1] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+24-Feb-2026 20:14:54.626 INFO [Thread-1] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+24-Feb-2026 20:14:54.640 WARNING [Thread-1] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc The web application [empresa-web] registered the JDBC driver [org.postgresql.Driver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+24-Feb-2026 20:14:54.669 INFO [Thread-1] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+24-Feb-2026 20:14:54.680 INFO [Thread-1] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]

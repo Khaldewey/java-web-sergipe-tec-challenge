@@ -22,8 +22,8 @@ public class PedidoDAO {
         String sqlPedido =
             "INSERT INTO " + Pedido.NM_TABELA +
             " (" + PedidoColuna.CLIENTE_ID + ", " +
-                PedidoColuna.DATA_PEDIDO + ") " +
-            "VALUES (?, ?) RETURNING " + PedidoColuna.ID;
+                    PedidoColuna.DATA_PEDIDO + ") " +
+            "VALUES (?, ?)";
 
         try (Connection conn = ConnectionFactory.getConnection()) {
 
@@ -31,16 +31,24 @@ public class PedidoDAO {
 
             try (
                 PreparedStatement stmtPedido =
-                    conn.prepareStatement(sqlPedido)
+                    conn.prepareStatement(
+                        sqlPedido,
+                        PreparedStatement.RETURN_GENERATED_KEYS
+                    )
             ) {
 
                 stmtPedido.setLong(1, pedido.getClienteId());
                 stmtPedido.setDate(2, pedido.getDataPedido());
 
-                ResultSet rs = stmtPedido.executeQuery();
-                rs.next();
+                stmtPedido.executeUpdate();
 
-                Long pedidoId = rs.getLong(PedidoColuna.ID.getNome());
+                Long pedidoId = null;
+
+                try (ResultSet rs = stmtPedido.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        pedidoId = rs.getLong(1);
+                    }
+                }
 
                 salvarItens(conn, pedidoId, pedido.getItens());
 

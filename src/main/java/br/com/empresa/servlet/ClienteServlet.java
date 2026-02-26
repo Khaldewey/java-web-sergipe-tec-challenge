@@ -2,6 +2,7 @@ package br.com.empresa.servlet;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,15 +71,23 @@ public class ClienteServlet extends HttpServlet {
         String nome = request.getParameter(parametroNome);
         String email = request.getParameter(parametroEmail);
         String dataCadastro = request.getParameter(parametroDataCadastro);
+        Cliente cliente = null;
 
         try {
-            Cliente cliente = new Cliente( nome, email, Date.valueOf(dataCadastro));
+            cliente = new Cliente( nome, email, Date.valueOf(dataCadastro));
             dao.salvar(cliente);
             response.sendRedirect(request.getContextPath() + "/clientes");
+        } catch (SQLIntegrityConstraintViolationException e) {
+
+            request.setAttribute("erro", "Já existe e-mail cadastrado na base de dados.");
+            request.setAttribute("cliente", cliente);
+            request.getRequestDispatcher("/cliente/form.jsp").forward(request, response);
+
         } catch (Exception e) {
+
             request.setAttribute("exception", e);
             request.getRequestDispatcher("/exception.jsp")
-           .forward(request, response);
+                .forward(request, response);
         }
     }
 }
