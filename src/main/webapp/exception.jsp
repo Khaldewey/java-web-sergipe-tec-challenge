@@ -41,7 +41,7 @@
 ${exception}
     </pre>
 
-    <a href="${pageContext.request.contextPath}/">Voltar para o início</a>
+    <a href="${pageContext.request.contextPath}/pagina-principal">Voltar para o início</a>
 </div>
 
 </body>
