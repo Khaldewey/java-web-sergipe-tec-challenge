@@ -6,9 +6,9 @@ import java.sql.DriverManager;
 public class ConnectionFactory {
 
     private static final String URL =
-    "jdbc:h2:file:./data/empresa_db;" +
-    "AUTO_SERVER=TRUE;" +
-    "INIT=RUNSCRIPT FROM 'classpath:schema.sql'";
+        "jdbc:h2:mem:empresa_db;" +
+        "DB_CLOSE_DELAY=-1;" +
+        "INIT=RUNSCRIPT FROM 'classpath:schema.sql'";
 
     private static final String USER = "sa";
     private static final String PASSWORD = "";
@@ -16,9 +16,9 @@ public class ConnectionFactory {
     static {
         try {
             Class.forName("org.h2.Driver");
-            System.out.println("H2 persistente carregado!");
+            System.out.println("H2 Database carregado com sucesso!");
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Erro ao carregar driver H2", e);
         }
     }
 
