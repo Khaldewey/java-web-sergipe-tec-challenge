@@ -1,4 +1,11 @@
 # 🧾 Sistema de Gestão (Clientes, Produtos e Pedidos)
+⚠️ Se desejar fazer teste rápido com inicialização automática sem precisar configurar ambiente, faça download do pacote da branch de feature no link abaixo e clique no arquivo .bat start , a base de dados configurada nesse pacote é o h2 em memória, o mesmo tem finalidade de possibilitar testes rápidos de operações CRUD logo se o servidor for reiniciado os dados armazenados em memória serão perdidos. 
+
+OBS: Versão com base de dados postgresql logo abaixo.
+
+https://github.com/Khaldewey/java-web-sergipe-tec-challenge/archive/refs/heads/feature.zip
+
+<img width="676" height="288" alt="Captura de tela 2026-02-27 081818" src="https://github.com/user-attachments/assets/fd42b09b-e654-4fd9-ab21-58b7f22ddba5" />
 
 ## 🔗 Tutoriais Importantes
 
